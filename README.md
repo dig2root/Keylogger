@@ -25,7 +25,6 @@ _To do ..._
 ## References
 
 - Keystroke logging : https://en.wikipedia.org/wiki/Keystroke_logging
-- DLL Injection : https://en.wikipedia.org/wiki/DLL_injection
 - Hooking : https://en.wikipedia.org/wiki/Hooking
 - Global injection and Hooking in Windows : https://m417z.com/Implementing-Global-Injection-and-Hooking-in-Windows/
 - Global Hook Sample : https://github.com/katahiromz/GlobalHookSample
