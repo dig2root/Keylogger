@@ -24,9 +24,9 @@ _To do ..._
 
 ## References
 
-- Keystroke logging : https://en.wikipedia.org/wiki/Keystroke_logging
-- Hooking : https://en.wikipedia.org/wiki/Hooking
-- Global injection and Hooking in Windows : https://m417z.com/Implementing-Global-Injection-and-Hooking-in-Windows/
-- Global Hook Sample : https://github.com/katahiromz/GlobalHookSample
-- SetWindowsHookEx : https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw
-- LowLevelKeyboardProc : https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw
+- Keystroke logging : [https://en.wikipedia.org/wiki/Keystroke_logging](https://en.wikipedia.org/wiki/Keystroke_logging)
+- Hooking : [https://en.wikipedia.org/wiki/Hooking](https://en.wikipedia.org/wiki/Hooking)
+- Global injection and Hooking in Windows : [https://m417z.com/Implementing-Global-Injection-and-Hooking-in-Windows/](https://m417z.com/Implementing-Global-Injection-and-Hooking-in-Windows/)
+- Global Hook Sample : [https://github.com/katahiromz/GlobalHookSample](https://github.com/katahiromz/GlobalHookSample)
+- SetWindowsHookEx : [https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw)
+- LowLevelKeyboardProc : [https://learn.microsoft.com/en-us/windows/win32/winmsg/lowlevelkeyboardproc](https://learn.microsoft.com/en-us/windows/win32/winmsg/lowlevelkeyboardproc)
