@@ -1,32 +1,16 @@
-# C/C++ Keylogger
+# Keylogger
 
-_January 29, 2023 by [Clément Rault](https://dig2root.github.io)_
+A simple C++ keylogger.
 
-This article is dedicated to a personal project, in which I tried to understand and recreate the behavior of a software 
-Keylogger made with C/C++ and running on Windows. In this article you will find all my research and thoughts on the 
-subject. To make the article understandable to everyone, I redefine the concepts used.
+## How to compile
 
-## What is a keylogger
+```g++ -o keylogger.exe keylogger.cpp -static-libstdc++ -static-libgcc```
 
-A keylogger (or keystroke logger) is a tool (hardware or software) which proceed keystroke logging. Keystroke logging
-means a way to record / to log all the key pressed by a user on its keyboard device (physical or virtual).
-In this article I will speak only about software keyloggers. There is several possible techniques :
+## Improvement points
 
-1. Kernel-based
-2. API-based
-3. ...
+- Add data extraction by SMTP protocol (or other).
+- Add logging delay before data transfer.
 
-_To do ..._
+## Blog post
 
-## What does hooking mean
-
-_To do ..._
-
-## References
-
-- Keystroke logging : [https://en.wikipedia.org/wiki/Keystroke_logging](https://en.wikipedia.org/wiki/Keystroke_logging)
-- Hooking : [https://en.wikipedia.org/wiki/Hooking](https://en.wikipedia.org/wiki/Hooking)
-- Global injection and Hooking in Windows : [https://m417z.com/Implementing-Global-Injection-and-Hooking-in-Windows/](https://m417z.com/Implementing-Global-Injection-and-Hooking-in-Windows/)
-- Global Hook Sample : [https://github.com/katahiromz/GlobalHookSample](https://github.com/katahiromz/GlobalHookSample)
-- SetWindowsHookEx : [https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw)
-- LowLevelKeyboardProc : [https://learn.microsoft.com/en-us/windows/win32/winmsg/lowlevelkeyboardproc](https://learn.microsoft.com/en-us/windows/win32/winmsg/lowlevelkeyboardproc)
+https://dig2root.github.io/#/articles

