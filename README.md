@@ -10,7 +10,3 @@ A simple C++ keylogger.
 
 - Add data extraction by SMTP protocol (or other).
 - Add logging delay before data transfer.
-
-## Blog post
-
-https://dig2root.github.io/#/articles
